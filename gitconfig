@@ -1,0 +1,30 @@
+[alias]
+    s = status
+    d = diff
+    di = diff --ignore-space-change
+    dc = diff --cached
+    dci = diff --cached --ignore-space-change
+    sh = show --ignore-space-change
+    co = checkout
+    a = add
+    ap = add -p
+    c = commit
+    ca = commit --amend
+    b = branch
+    ss = stash save --keep-index
+    sp = stash pop
+    sa = stash apply
+    sl = stash list
+    p = "!f() { git pull --ff-only origin `git rev-parse --abbrev-ref HEAD`; }; f"
+    po = "!f() { git pull origin `git rev-parse --abbrev-ref HEAD`; }; f"
+    por = "!f() { git pull --rebase origin `git rev-parse --abbrev-ref HEAD`; }; f"
+    pusho = "!f() { git push origin `git rev-parse --abbrev-ref HEAD`; }; f"
+    glog = "!f() { git log --graph --format=\"%C(blue)%h%C(reset) %s (%C(green)%an%C(reset), %ar)\"; }; f"
+    wc = whatchanged
+    wc1 = whatchanged -1
+    track = "!f() { git remote update >/dev/null 2>&1 && git checkout -b \"$@\" origin/\"$@\"; }; f"
+    files = "!f() { git diff-tree --name-only --no-commit-id -r ${1-HEAD}; }; f"
+    downstream = "!f() { git remote update >/dev/null 2>&1 && git wc $@ `git rev-parse --abbrev-ref --symbolic-full-name @{u}`..HEAD; }; f"
+    upstream = "!f() { git remote update >/dev/null 2>&1 && git wc $@ HEAD..`git rev-parse --abbrev-ref --symbolic-full-name @{u}`; }; f"
+    stats = "!f() { git shortlog -n --summary `git log -1 --before \"$1\" --pretty=format:"%h"`..`git log -1 --before \"$2\" --pretty=format:"%h"`; }; f"
+    la = "!git config -l|grep alias|cut -c 7-"
