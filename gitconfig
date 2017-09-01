@@ -8,7 +8,8 @@
     co = checkout
     a = add
     ap = add -p
-    c = commit
+    # Commit with localizable timezone information (checks user.tz config option)
+    c = "!f() { GITZ=$(git config user.tz); if [ -z \"$GITZ\" ]; then git commit $@; else git commit --date=\"`TZ=\\\"$GITZ\\\" date +%Y-%m-%dT%H:%M:%S%z`\" $@; fi;  }; f"
     ca = commit --amend
     b = branch
     ss = stash save --keep-index
