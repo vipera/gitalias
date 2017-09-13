@@ -11,6 +11,10 @@
     # Commit with localizable timezone information (checks user.tz config option)
     c = "!f() { GITZ=$(git config user.tz); if [ -z \"$GITZ\" ]; then git commit $@; else git commit --date=\"`TZ=\\\"$GITZ\\\" date +%Y-%m-%dT%H:%M:%S%z`\" $@; fi;  }; f"
     ca = commit --amend
+    uncommit = reset --soft HEAD^
+    unstage = reset HEAD
+    ours = "!f() { git co --ours $@ && git add $@; }; f"
+    theirs = "!f() { git co --theirs $@ && git add $@; }; f"
     b = branch
     ss = stash save --keep-index
     sp = stash pop
@@ -28,4 +32,5 @@
     downstream = "!f() { git remote update >/dev/null 2>&1 && git wc $@ `git rev-parse --abbrev-ref --symbolic-full-name @{u}`..HEAD; }; f"
     upstream = "!f() { git remote update >/dev/null 2>&1 && git wc $@ HEAD..`git rev-parse --abbrev-ref --symbolic-full-name @{u}`; }; f"
     stats = "!f() { git shortlog -n --summary `git log -1 --before \"$1\" --pretty=format:"%h"`..`git log -1 --before \"$2\" --pretty=format:"%h"`; }; f"
+    standup = shortlog --since=yesterday
     la = "!git config -l|grep \"^alias\\.\"|cut -c 7-"
