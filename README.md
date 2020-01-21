@@ -20,7 +20,13 @@ Git 1.7.10+
 
 ### Installing
 
-Assuming you have a sufficiently recent version of Git installed (1.7.10), simply add this to an appropriate Git config file (e.g. /etc/gitconfig for having these aliases globally available):
+Assuming you have a sufficiently recent version of Git installed (1.7.10), simply add a path to the gitconfig from this repository to your `include.path`. For example, with `git config --system`:
+
+```
+git config --system include.path '/path/to/gitalias/gitconfig'
+```
+
+Alternatively, directly edit a Git config file (e.g. /etc/gitconfig to have these aliases globally available):
 
 ```
 [include]
