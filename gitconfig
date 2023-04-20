@@ -15,6 +15,7 @@
     unstage = reset HEAD
     ours = "!f() { git co --ours $@ && git add $@; }; f"
     theirs = "!f() { git co --theirs $@ && git add $@; }; f"
+    rio = "!git rebase -i $(git merge-base HEAD origin/$(git remote show origin | sed -n '/HEAD branch/s/.*: //p'))"
     b = branch
     ss = stash save --keep-index
     sp = stash pop
